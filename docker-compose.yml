@@ -1,0 +1,63 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: synetra_api
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+      - mosquitto
+      - redis
+
+  worker:
+    image: python:3.11-slim
+    container_name: synetra_worker
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["python","worker/worker.py"]
+    env_file: .env
+    depends_on:
+      - api
+      - redis
+      - mosquitto
+
+  mysql:
+    image: mysql:8.0
+    container_name: synetra_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: synetra_db
+      MYSQL_USER: synetra
+      MYSQL_PASSWORD: synetrapass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: synetra_mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"   # websockets if needed
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - mosq_data:/mosquitto/data
+      - mosq_log:/mosquitto/log
+
+  redis:
+    image: redis:7
+    container_name: synetra_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysql_data:
+  mosq_data:
+  mosq_log:
