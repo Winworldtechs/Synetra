@@ -1,0 +1,14 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+.env*
+.git
+.gitignore
+.vscode
+node_modules
+instance
+backend/__pycache__
+backend/migrations/versions/__pycache__
