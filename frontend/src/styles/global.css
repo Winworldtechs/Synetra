@@ -1,0 +1,130 @@
+:root {
+  /* Primary Colors */
+  --primary-gradient-start: #00B09B;
+  --primary-gradient-end: #0078FF;
+  --accent: #00C8FF;
+  --dark-base: #0D1B2A;
+  --light-bg: #F6FAFB;
+  --secondary-text: #4A5568;
+  --border-color: #E2E8F0;
+  --success: #00C896;
+  --error: #FF4D4F;
+
+  /* Common Gradients */
+  --primary-gradient: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
+
+  /* Shadows */
+  --card-shadow: 0 4px 6px rgba(13, 27, 42, 0.1);
+  
+  /* Transitions */
+  --transition-speed: 0.3s;
+
+  /* Breakpoints */
+  --bp-xl: 1280px;
+  --bp-lg: 1024px;
+  --bp-md: 768px;
+  --bp-sm: 640px;
+}
+
+/* Base styles */
+body {
+  background-color: var(--light-bg);
+  color: var(--dark-base);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--dark-base);
+}
+
+p, span, div {
+  color: var(--secondary-text);
+}
+
+/* Button styles */
+.btn-primary {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  transition: transform var(--transition-speed);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 176, 155, 0.2);
+}
+
+/* Card styles */
+.card {
+  background: white;
+  box-shadow: var(--card-shadow);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+/* Form elements */
+input, select, textarea {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  color: var(--dark-base);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(0, 200, 255, 0.2);
+}
+
+/* Status colors */
+.success {
+  color: var(--success);
+}
+
+.error {
+  color: var(--error);
+}
+
+/* Responsive base resets */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Containers */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) { .container { max-width: 640px; } }
+@media (min-width: 768px) { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1200px; } }
+
+/* Utility helpers */
+.hide-sm { display: none; }
+@media (min-width: 768px) { .hide-sm { display: initial; } }
+.show-sm { display: initial; }
+@media (min-width: 768px) { .show-sm { display: none; } }
+
+/* Responsive tables */
+.table-responsive { width: 100%; overflow-x: auto; }
+.table-responsive table { width: 100%; border-collapse: collapse; }
+
+/* Typography scaling */
+@media (max-width: 768px) {
+  body { font-size: 15px; }
+}
+@media (max-width: 640px) {
+  body { font-size: 14px; }
+}

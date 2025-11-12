@@ -1,0 +1,67 @@
+.operation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.operation-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.operation-animation {
+  width: 250px;
+  height: 250px;
+  max-width: 90vw;
+  max-height: 90vw;
+}
+
+.operation-message {
+  margin-top: 16px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.operation-message.loading {
+  color: #fff;
+}
+
+.operation-message.success {
+  color: #4caf50;
+}
+
+.operation-message.error {
+  color: #f44336;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .operation-animation {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .operation-message {
+    font-size: 1rem;
+  }
+}

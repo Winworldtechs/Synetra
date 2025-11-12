@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DB_USER = os.getenv("MYSQL_USER","synetra")
-DB_PASS = os.getenv("MYSQL_PASSWORD","synetrapass")
+DB_PASS = os.getenv("MYSQL_PASSWORD","root")
 DB_HOST = os.getenv("MYSQL_HOST","mysql")
 DB_PORT = os.getenv("MYSQL_PORT","3306")
-DB_NAME = os.getenv("MYSQL_DB","synetra_db")
+DB_NAME = os.getenv("MYSQL_DB","synetra_home_automation")
 
 DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset=utf8mb4"
 

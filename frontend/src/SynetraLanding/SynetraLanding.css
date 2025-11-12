@@ -1,0 +1,99 @@
+/* Synetra landing styles */
+:root{
+  --accent-start: #3AD984;
+  --accent-end: #0097DE;
+  --primary-gradient: linear-gradient(135deg,var(--accent-start),var(--accent-end));
+  --text-color: #0f172a;
+  --muted: #6b7280;
+}
+
+.synetra-landing{font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans"; color:var(--text-color);}
+
+/* Header */
+.landing-header{background: #fff; border-bottom:1px solid #eef2f7;}
+.landing-header{background: #fff; border-bottom:1px solid #eef2f7; position:sticky; top:0; z-index:60}
+.landing-header-inner{max-width:1200px; margin:0 auto; padding:16px 20px; display:flex; align-items:center; gap:18px; justify-content:space-between}
+.logo img{height:36px}
+
+.landing-nav{display:flex; gap:14px; align-items:center}
+.landing-nav a{color:var(--text-color); text-decoration:none; padding:6px 8px; border-radius:6px; font-weight:600}
+.landing-nav a:hover{color:transparent; background-image:var(--primary-gradient); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+
+.landing-actions{display:flex; gap:10px; align-items:center}
+.btn-outline{background:transparent; border:1px solid rgba(0,0,0,0.06); padding:8px 12px; border-radius:8px; cursor:pointer}
+.btn-primary{background:var(--primary-gradient); color:#fff; padding:10px 16px; border-radius:9px; border:none; cursor:pointer; font-weight:700}
+.btn-link{color:var(--accent-end); margin-left:12px}
+
+/* Hero */
+.landing-main{max-width:1200px; margin:26px auto; padding:0 20px}
+.hero{display:flex; gap:28px; align-items:center; justify-content:space-between; padding:28px 0}
+.hero-content{flex:1; max-width:640px}
+.hero h1{font-size:34px; line-height:1.05; margin-bottom:12px}
+.hero .lead{color:var(--muted); margin-bottom:18px}
+.hero-ctas{display:flex; gap:12px; align-items:center}
+
+.hero-email{margin-top:14px; display:flex; gap:8px; align-items:center}
+.hero-email .lead-input{padding:10px 12px; border-radius:8px; border:1px solid #e6eef6; width:220px}
+.hero-email .lead-input.invalid{border-color:#ff6b6b}
+.btn-ghost{background:transparent; border:1px solid rgba(0,0,0,0.06); padding:8px 12px; border-radius:8px; cursor:pointer}
+.email-sent{color:var(--accent-start); margin-left:10px; font-weight:600}
+.email-error{color:#ff6b6b; margin-left:10px}
+
+.hero-media{width:420px; height:260px; display:flex; align-items:center; justify-content:center}
+.hero-illustration{width:100%; height:100%; background:linear-gradient(180deg, rgba(0,151,222,0.06), rgba(58,217,132,0.04)); border-radius:12px; border:1px solid rgba(0,0,0,0.04)}
+
+/* Features */
+.features{margin-top:28px}
+.features-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-top:12px}
+.feature-card{background:#fff; border-radius:12px; padding:14px; box-shadow:0 6px 18px rgba(2,6,23,0.04); border:1px solid #f1f5f9; display:flex; gap:12px; align-items:flex-start}
+.feature-icon{width:44px; height:44px; padding:8px; background:linear-gradient(180deg, rgba(0,151,222,0.08), rgba(58,217,132,0.06)); border-radius:10px}
+.feature-body h4{margin:0 0 8px 0}
+.feature-body p{margin:0; color:var(--muted)}
+
+/* Use cases */
+.use-cases{margin-top:28px}
+.use-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-top:12px}
+.case{padding:20px; border-radius:10px; background:linear-gradient(135deg, rgba(58,217,132,0.08), rgba(0,151,222,0.06)); text-align:center; font-weight:600}
+
+/* Testimonials */
+.testimonials{margin-top:28px}
+.testimonials-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:12px}
+.testimonial{background:#fff; padding:16px; border-radius:12px; box-shadow:0 6px 18px rgba(2,6,23,0.04); border:1px solid #f1f5f9; text-align:left}
+.avatar{width:48px; height:48px; border-radius:50%; float:left; margin-right:12px}
+.quote{font-style:italic; color:var(--text-color); margin-top:4px}
+.by{margin-top:8px; color:var(--muted); font-weight:600}
+
+/* Footer / contact */
+.footer-right{display:flex; gap:12px; align-items:center}
+.social-link{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:8px; background:var(--primary-gradient); color:#fff; text-decoration:none; font-weight:600}
+
+/* Order */
+.order{margin-top:28px; text-align:center; padding:22px}
+
+/* Modal */
+.order-modal-overlay{position:fixed; inset:0; background:rgba(4,6,12,0.45); display:flex; align-items:center; justify-content:center; z-index:120}
+.order-modal{background:#fff; border-radius:12px; padding:18px; max-width:420px; width:92%; box-shadow:0 12px 40px rgba(2,6,23,0.3); position:relative}
+.modal-close{position:absolute; right:10px; top:8px; background:transparent; border:none; font-size:20px; cursor:pointer}
+.modal-body{text-align:center}
+.modal-body h4{margin-top:8px}
+.modal-actions{display:flex; gap:8px; justify-content:center; margin-top:12px}
+
+/* Footer */
+.landing-footer{border-top:1px solid #eef2f7; margin-top:34px; padding:18px 0; background:#fff}
+.footer-inner{max-width:1200px; margin:0 auto; padding:0 20px; display:flex; justify-content:space-between; align-items:center}
+.footer-right a{margin-left:12px; color:var(--muted); text-decoration:none}
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero{flex-direction:column;}
+  .hero-media{width:100%; height:220px}
+  .hero h1{font-size:28px}
+}
+
+@media (max-width:520px){
+  .landing-header-inner{padding:12px}
+  .landing-nav{display:none}
+  .hero h1{font-size:22px}
+  .hero-ctas{flex-direction:column; align-items:flex-start}
+  .hero-email{width:100%;}
+}

@@ -1,0 +1,367 @@
+.header {
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 24px;
+  box-shadow: 0 2px 4px rgba(13, 27, 42, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+:root {
+  /* header accent used for active underline */
+  --accent-start: #3AD984;
+  --accent-end: #0097DE;
+  --header-accent: var(--accent-start);
+  /* primary gradient used across header buttons and accent text */
+  --primary-gradient: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 48px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--dark-base);
+  /* subtle gradient text for the logo */
+  background: var(--primary-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Mobile menu button */
+.menu-toggle {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  display: none; /* hidden by default, shown on small screens via .show-sm */
+  cursor: pointer;
+}
+.menu-toggle .bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #111827;
+  margin: 4px 0;
+  transition: background 0.2s ease;
+}
+.menu-toggle .menu-label {
+  margin-left: 8px;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Navigation inside header (Home link) */
+.header-nav { 
+  display: flex; 
+  gap: 24px; 
+  align-items: center;
+  margin-right: 16px;
+}
+
+.header-nav .nav-link {
+  color: #111827;
+  text-decoration: none;
+  padding: 6px 8px;
+  border-bottom: 2px solid transparent;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: color .18s ease, background .15s ease, border-color .15s ease;
+}
+
+/* gradient text on hover and active to match site accents */
+.header-nav .nav-link:hover {
+  background: rgba(0,0,0,0.02);
+  color: transparent;
+  background-image: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-nav .nav-link.active {
+  color: transparent;
+  background-image: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom-color: var(--accent-end);
+}
+
+/* header notification styles */
+.header-notif { 
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.header-notif .notif-btn { 
+  background: #f3f4f6; 
+  border: none; 
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.header-notif .notif-btn:hover {
+  background: #e5e7eb;
+}
+
+.header-notif .notif-btn:active {
+  background: #d1d5db;
+  transform: scale(0.95);
+  padding: 8px; 
+  border-radius: 8px; 
+  color: #4B5563;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.header-notif .notif-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.5px;
+}
+
+.header-notif .notif-btn:hover { 
+  background: rgba(15,23,42,0.04); 
+  color: #111827; 
+}
+
+.header-notif .notif-badge { 
+  position: absolute; 
+  top: -2px; 
+  right: -2px; 
+  background: #ef4444; 
+  color: white;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid white;
+  font-size: 0.75rem; 
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px; 
+  border-radius: 999px; 
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notif-dropdown { 
+  position: absolute; 
+  right: 0; 
+  top: 48px; 
+  width: 320px; 
+  background: #fff; 
+  border: 1px solid #eef2f7; 
+  box-shadow: 0 8px 24px rgba(2,6,23,0.08); 
+  border-radius: 12px; 
+  padding: 16px; 
+  z-index: 40; 
+}
+
+.notif-title { 
+  font-size: 1rem; 
+  font-weight: 600; 
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.notif-empty { 
+  color: #6B7280; 
+  padding: 12px 6px;
+  text-align: center;
+}
+
+.notif-item { 
+  padding: 12px; 
+  border-radius: 8px; 
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.2s ease;
+}
+
+.notif-item:hover {
+  background-color: #f8fafc;
+}
+
+.notif-item:last-child { 
+  border-bottom: none; 
+}
+
+.notif-item-title { 
+  font-weight: 600; 
+  font-size: 0.925rem;
+  color: #111827;
+}
+
+.notif-item-sub { 
+  font-size: 0.825rem; 
+  color: #6B7280; 
+  margin-top: 4px; 
+}
+
+.btn-upload {
+  background: var(--primary-gradient);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-upload:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upload-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.avatar img:hover {
+  border-color: var(--accent-start);
+  transform: scale(1.05);
+}
+
+.btn-upload {
+  display: flex;
+  align-items: center;
+  gap: 6px; 
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-upload:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 176, 155, 0.2);
+}
+
+.btn-upload img.upload-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mobile dropdown panel */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 120; /* above header (100) so panel is clickable and visible */
+}
+.mobile-nav-inner {
+  position: absolute;
+  top: 64px;
+  left: 12px;
+  right: 12px;
+  background: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(2,6,23,0.08);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.m-nav-link {
+  text-decoration: none;
+  color: #111827;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.m-nav-link.active {
+  background: #f3f4f6;
+  color: #0f172a;
+}
+.m-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .header-container { height: 56px; }
+  .header-right { gap: 12px; }
+  .header-nav { display: none; }
+  .header-right > .btn-upload { display: none; } /* hide only the header's upload button */
+  .menu-toggle { display: inline-flex; }
+  .logo img { width: 48px !important; }
+}
+
+@media (max-width: 640px) {
+  .header { padding: 10px 16px; }
+  .avatar img { width: 36px; height: 36px; }
+  .header-notif .notif-btn { width: 32px; height: 32px; }
+}
+
+/* Ensure upload button is visible inside the mobile panel */
+.mobile-nav .btn-upload { display: flex !important; }

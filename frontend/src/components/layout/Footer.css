@@ -1,0 +1,24 @@
+
+.footer {
+  margin-top: auto;
+  width: 100%;
+  background-color: #f8f9fa;
+  color: #555;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  font-family: 'Arial', sans-serif;
+  border-top: 1px solid #eaeaea;
+  z-index: 10;
+}
+
+
+.footer p {
+  margin: 0;
+}
+
+/* Optional: Make footer slightly darker on hover */
+.footer:hover {
+  background-color: #e9ecef;
+  transition: background-color 0.3s ease;
+}

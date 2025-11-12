@@ -1,0 +1,253 @@
+/* VideoList Container */
+.video-list {
+  padding: 16px 12px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-list-header {
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+
+.video-list-header h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color, #333);
+  margin: 0;
+}
+
+/* Video Grid Layout */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+/* Video Card */
+.video-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  padding: 12px;
+}
+
+.video-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* Ensure name (left) and id (right) are on a single row inside cards */
+.video-card .device-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+/* Let the device info grow and truncate gracefully within header */
+.video-card-header .device-info { flex: 1; min-width: 0; }
+
+.video-card .device-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.video-card .device-id {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  color: var(--text-muted, #666);
+  white-space: nowrap;
+}
+
+.device-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color, #333);
+  margin: 0;
+}
+
+.device-id {
+  font-size: 0.8125rem;
+  color: var(--text-muted, #666);
+  font-weight: 500;
+}
+
+.schedule-time {
+  display: flex;
+  gap: 12px;
+  font-size: 0.8125rem;
+  color: var(--text-muted, #666);
+}
+
+/* Keep schedule time pinned to the right and on one line */
+.video-card-header .schedule-time {
+  flex-shrink: 0;
+  white-space: nowrap;
+  text-align: right;
+  margin-left: 12px;
+}
+
+/* Video Container */
+.video-container {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16/7;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Video Controls */
+.video-controls {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.video-container:hover .video-controls {
+  opacity: 1;
+}
+
+.control-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.control-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Progress Bar */
+.video-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--accent-color, #3b82f6);
+  transition: width 0.1s linear;
+}
+
+/* Video Duration */
+.video-duration {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+  color: white;
+  font-size: 0.875rem;
+}
+
+/* Loading and Empty States */
+.video-list-loader,
+.no-videos {
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.animation-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.loader-text {
+  margin-top: 12px;
+  color: var(--text-color, #333);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.no-videos-text {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color, #333);
+}
+
+.no-videos-sub {
+  margin-top: 6px;
+  color: var(--text-muted, #666);
+  font-size: 0.95rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .video-list { padding: 8px; }
+
+  .video-grid { grid-template-columns: 1fr; gap: 8px; }
+
+  .video-card { padding: 8px; }
+
+  .animation-center Lottie,
+  .animation-center > div {
+    width: 260px !important;
+    height: 260px !important;
+  }
+
+  .video-controls {
+    bottom: 32px;
+  }
+
+  .control-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Make the video taller on phones for better viewing */
+  .video-container { aspect-ratio: 16/9; }
+}
+
+@media (max-width: 400px) {
+  .video-list { padding: 6px; }
+  .video-grid { gap: 6px; }
+  .video-card { padding: 6px; }
+  /* Slightly smaller time text to avoid overflow on very small screens */
+  .video-card-header .schedule-time { font-size: 0.75rem; gap: 8px; }
+}

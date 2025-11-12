@@ -1,0 +1,17 @@
+/* All imports must come first to ensure they are applied consistently */
+@import './styles/global.css';
+@import './components/layout/Layout.css';
+@import './components/layout/Header.css';
+@import './components/layout/Footer.css';
+@import './components/devices/DeviceManager.css';
+@import './components/videos/VideoList.css';
+@import './components/videos/VideoUpload.css';
+@import './components/profile/Profile.css';
+@import './components/login/login.css';
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

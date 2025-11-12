@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.videos-page {
+  padding: 20px;
+}
+
+.videos-section { position: relative; display: grid; grid-template-columns: 1fr; gap: 18px; }
+
+/* For wider screens place items stacked but keep relative container for absolute button */
+@media (min-width: 900px) {
+  .videos-section { grid-template-columns: 1fr; }
+}
+
+.playlist-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.playlist-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.playlist-header button {
+  padding: 6px 14px;
+  background-color: #007bff; 
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.playlist-header button:hover {
+  background-color: #0056b3;
+}
+
+.VideoList{
+  margin-bottom: 2%;
+}
+
+/* Reduce page padding on small screens so videos use more width */
+@media (max-width: 768px) {
+  .videos-page { padding: 12px; }
+}
+@media (max-width: 640px) {
+  .videos-page { padding: 4px; }
+}

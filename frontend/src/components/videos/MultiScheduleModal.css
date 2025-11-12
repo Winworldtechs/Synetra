@@ -1,0 +1,239 @@
+/* MultiScheduleModal.css
+	 Modern, centered modal with dark backdrop, two-column layout, animations
+	 - Uses CSS variables for easy theming
+	 - Responsive: two columns on wide screens, stacked on narrow screens
+	 - Comments provided for each major block
+*/
+
+:root {
+	--msm-overlay: rgba(17, 24, 39, 0.6); /* dark translucent backdrop */
+	--msm-bg: #ffffff;
+	--msm-radius: 14px;
+	--msm-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+	--msm-accent: #007bff; /* primary accent */
+	--msm-accent-2: #ff5c5c; /* alternate accent */
+	--msm-muted: #6b7280;
+	--msm-gap: 16px;
+	--msm-padding: 20px;
+	--msm-max-width: 960px;
+}
+
+/* Overlay/backdrop covering the entire viewport */
+.msm-overlay {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	z-index: 1200;
+	pointer-events: auto;
+	opacity: 0;
+	transition: opacity 220ms ease;
+}
+.msm-overlay.open {
+	background: var(--msm-overlay);
+	opacity: 1;
+}
+
+/* Modal container */
+.msm-modal {
+	width: calc(100% - 48px);
+	max-width: var(--msm-max-width);
+	background: var(--msm-bg);
+	border-radius: var(--msm-radius);
+	box-shadow: var(--msm-shadow);
+	overflow: hidden;
+	transform: translateY(6px) scale(0.995);
+	transition: transform 220ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease;
+	max-height: calc(100vh - 48px);
+	display: flex;
+	flex-direction: column;
+	font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+.msm-overlay.open .msm-modal {
+	transform: translateY(0) scale(1);
+}
+
+/* Header */
+.msm-header {
+	padding: var(--msm-padding);
+	display: flex;
+	align-items: center;
+	justify-content: center; /* title centered */
+	position: relative;
+}
+.msm-header h2 {
+	margin: 0;
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+.msm-close {
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	background: transparent;
+	border: none;
+	font-size: 1.05rem;
+	cursor: pointer;
+	color: var(--msm-muted);
+	padding: 6px;
+	border-radius: 8px;
+}
+.msm-close:hover { color: #111827; background: rgba(15,23,42,0.04); }
+
+/* divider under header */
+.msm-divider { height: 1px; background: #eef2f7; }
+
+/* Body: scrollable area */
+.msm-body {
+	padding: var(--msm-padding);
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	overflow: auto;
+}
+
+/* Lottie overlay (loading / success / error) shown inside modal */
+.msm-lottie-overlay {
+	position: absolute;
+	inset: 64px 24px 80px; /* don't cover header/footer fully */
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	pointer-events: none; /* allow clicks to fall through when idle */
+}
+.msm-lottie-box {
+	background: rgba(255,255,255,0.95);
+	padding: 18px;
+	border-radius: 12px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	gap:8px;
+	box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+	pointer-events: auto;
+}
+.msm-lottie-label { font-size:0.95rem; color:#111827; font-weight:600; }
+
+/* Top section: two-column lists (devices & videos) */
+.msm-lists {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 18px;
+}
+
+/* Column container */
+.msm-column {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.msm-subtitle { margin: 0; font-size: 0.95rem; font-weight: 600; color: #111827; }
+
+/* Scrollable lists inside a fixed height to allow internal scrolling */
+.msm-scroll {
+	max-height: 320px;
+	overflow: auto;
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	background: #fbfbfd;
+	border-radius: 10px;
+	border: 1px solid #f1f5f9;
+}
+
+/* Device card */
+.device-card {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	gap: 12px;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+.device-card:hover { transform: translateY(-2px); background: #ffffff; }
+.device-card.selected {
+	background: rgba(0, 123, 255, 0.06);
+	border: 1px solid rgba(0,123,255,0.14);
+	box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+	transform: scale(1.01);
+}
+.device-main { display:flex; align-items:center; gap:12px; width:100%; }
+.device-icon { color: #374151; display:flex; align-items:center; justify-content:center; }
+.device-name { flex:1; }
+.device-title { font-weight:600; color:#0f172a; display:flex; align-items:center; gap:8px; }
+.status-dot { width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:6px; box-shadow: 0 1px 2px rgba(2,6,23,0.06); }
+.status-dot.online { background: #10b981; } /* green */
+.status-dot.offline { background: #ef4444; } /* red */
+.status-dot.unknown { background: #9ca3af; } /* gray */
+.device-status { font-weight:400; color:var(--msm-muted); font-size:0.9rem; margin-left:6px; }
+.device-times { font-size:0.8rem; color:var(--msm-muted); margin-top:6px; display:flex; flex-direction:column; gap:2px; }
+.hidden-checkbox { display:none; }
+
+/* Video item */
+.video-item { display:flex; align-items:center; gap:10px; padding:8px; border-radius:8px; cursor:pointer; }
+.video-item input { width:16px; height:16px; }
+.video-item .video-icon { color:#374151; display:inline-flex; }
+.video-item .video-title { font-size:0.95rem; color:#0f172a; }
+.video-item.selected { background: rgba(3, 105, 161, 0.04); border:1px solid rgba(3,105,161,0.08); transform: scale(1.01); }
+
+/* Time inputs section */
+.msm-times { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+.time-input { flex:1 1 240px; display:flex; flex-direction:column; gap:8px; }
+.time-label { font-size:0.85rem; color:var(--msm-muted); }
+.input-wrap { position:relative; }
+.input-wrap input[type="datetime-local"] {
+	width:100%;
+	padding:10px 12px 10px 12px;
+	border-radius:10px;
+	border:1px solid #e6eef8;
+	background: #fff;
+	outline: none;
+	transition: box-shadow 140ms ease, border-color 140ms ease, transform 120ms ease;
+	font-size:0.95rem;
+}
+.input-wrap input[type="datetime-local"]:hover { border-color:#cfe5ff; }
+.input-wrap input[type="datetime-local"]:focus { box-shadow: 0 6px 18px rgba(3, 105, 161, 0.08); border-color: var(--msm-accent); }
+.input-icon { position:absolute; right:10px; top:50%; transform:translateY(-50%); color:var(--msm-muted); pointer-events:none; }
+
+/* inline option row */
+.options-row { display:flex; gap:16px; align-items:center; margin-top:6px; }
+.option-inline { display:flex; gap:8px; align-items:center; color:var(--msm-muted); }
+.option-inline select { margin-left:8px; padding:6px 8px; border-radius:8px; border:1px solid #e6eef8; }
+
+/* Footer and buttons */
+.msm-footer { padding: 16px 20px; border-top: 1px solid #f3f4f6; display:flex; justify-content:flex-end; }
+.footer-actions { display:flex; gap:12px; }
+.btn { padding:10px 14px; border-radius:10px; font-weight:600; cursor:pointer; border:1px solid transparent; }
+.btn-primary { background: var(--msm-accent); color: #fff; transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(3,123,255,0.14); }
+.btn-secondary { background: #fff; color: #111827; border:1px solid #e6eef8; }
+.btn-secondary:hover { background:#fafafa; }
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 860px) {
+	.msm-lists { grid-template-columns: 1fr; }
+	.msm-times { flex-direction: column; }
+	.msm-scroll { max-height: 220px; }
+}
+
+/* Reduce vertical spacing between Start and End time on small phones */
+@media (max-width: 520px) {
+  .msm-times { gap: 8px; }
+  .time-input { gap: 6px; }
+}
+
+/* Scrollbar styling for long lists */
+.msm-scroll::-webkit-scrollbar { width:10px; height:10px; }
+.msm-scroll::-webkit-scrollbar-track { background: transparent; }
+.msm-scroll::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.06); border-radius:8px; border:2px solid transparent; background-clip: padding-box; }
+
+/* small accessibility focus overrides */
+.device-card:focus, .video-item:focus { outline: 2px solid rgba(3, 105, 161, 0.12); }
+
+/* Smooth transitions for selection */
+.device-card, .video-item { transition: transform 160ms ease, background 140ms ease, box-shadow 140ms ease; }
+
